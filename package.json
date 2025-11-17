@@ -1,7 +1,7 @@
 {
   "name": "number_guessing_game",
   "version": "1.0.0",
-  "description": "a simple cli tool ",
+  "description": "a simple cli game ",
   "main": "index.js",
   "scripts": {
     "test": "npm run test"
@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/PhilippAubert/Number_Guessing_Game/issues"
   },
-  "homepage": "https://github.com/PhilippAubert/Number_Guessing_Game#readme"
+  "homepage": "https://github.com/PhilippAubert/Number_Guessing_Game#readme",
+  "type" : "module"
 }
