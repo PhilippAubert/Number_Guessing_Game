@@ -1,0 +1,19 @@
+{
+  "name": "number_guessing_game",
+  "version": "1.0.0",
+  "description": "a simple cli tool ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhilippAubert/Number_Guessing_Game.git"
+  },
+  "author": "ujin22",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhilippAubert/Number_Guessing_Game/issues"
+  },
+  "homepage": "https://github.com/PhilippAubert/Number_Guessing_Game#readme"
+}
