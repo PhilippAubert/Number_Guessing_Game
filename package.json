@@ -16,5 +16,8 @@
     "url": "https://github.com/PhilippAubert/Number_Guessing_Game/issues"
   },
   "homepage": "https://github.com/PhilippAubert/Number_Guessing_Game#readme",
-  "type" : "module"
+  "type": "module",
+  "dependencies": {
+    "eslint": "^9.39.1"
+  }
 }
