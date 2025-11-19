@@ -1,6 +1,5 @@
 import { EventEmitter } from "node:events";
 
-
 class GameEmitter extends EventEmitter {
     numberToGuess = 0;
     attempts = 0;
@@ -12,7 +11,7 @@ class GameEmitter extends EventEmitter {
     };
     
     setNumberToGuess() {
-        this.numberToGuess = 20;//Math.floor(Math.random() * 100);
+        this.numberToGuess = Math.floor(Math.random() * 100);
     };
 
     setLevelAndAttempts(value) {
@@ -61,6 +60,7 @@ gameEmitter.on("win", () => {
 gameEmitter.on("lose", () => {
     process.stdout.write(` 
         Ahh, that's too bad!! 
+        You've lost! 
         ${gameEmitter.numberToGuess} was the expected numbers!
         See you next time! 
         \n`
@@ -93,7 +93,22 @@ const startGame = () => {
             gameEmitter.emit("game");
         } else {
             const guess = Number(input);
-            
+            if (gameEmitter.attempts === 0) {
+                gameEmitter.emit("lose");
+            }
+            if (Number.isNaN(guess)) {
+                process.stdout.write("Enter a number between 1 and 3 or press 'q'");
+            } else {
+                if (guess === gameEmitter.numberToGuess) {
+                    gameEmitter.emit("win");
+                } else if (guess < gameEmitter.numberToGuess) {
+                    process.stdout.write(`the expected number is higher than ${guess} \n`);
+                    gameEmitter.attempts--;
+                } else if (guess > gameEmitter.numberToGuess) {
+                    process.stdout.write(`the expected number is lower than ${guess} \n`);
+                    gameEmitter.attempts--;
+                }
+            }
         }
     });
 };
