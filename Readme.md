@@ -2,7 +2,11 @@
 
 A simple number guessing game implemented in JavaScript.
 
-[![Website](https://img.shields.io/badge/website-Visit-blue)]([https://github.com/PhilippAubert/Number_Guessing_Game)](https://github.com/PhilippAubert/Number_Guessing_Game/releases/tag/v1.0.0)
+Sample solution for the number-guessing-game challenge from roadmap.sh.
+
+[![Website](https://img.shields.io/badge/website-Visit-blue)]([https://github.com/PhilippAubert/Number_Guessing_Game)]
+
+Release URL is: (https://github.com/PhilippAubert/Number_Guessing_Game/releases/tag/v1.0.0)
 
 Project URL: https://github.com/PhilippAubert/Number_Guessing_Game
 
