@@ -1,6 +1,13 @@
-# A simple CLI-Game
+# Number Guessing Game
 
-#### check url here: https://github.com/PhilippAubert/Number_Guessing_Game
+A simple number guessing game implemented in JavaScript.
 
-## User can guess a number
-## The game closes after users attempts have expired or he guessed the right number
+[![Website](https://img.shields.io/badge/website-Visit-blue)](https://github.com/PhilippAubert/Number_Guessing_Game)
+
+Project URL: https://github.com/PhilippAubert/Number_Guessing_Game
+
+## About
+Users can set the number of attempts to guess a number between 1 and 100. 
+
+## Usage
+Once the level has been set by the user, guessed numbers can be typed to command line. 
