@@ -2,6 +2,8 @@
 
 A simple number guessing game implemented in JavaScript.
 
+Based on https://roadmap.sh/projects/number-guessing-game
+
 Sample solution for the number-guessing-game challenge from roadmap.sh.
 
 [![Website](https://img.shields.io/badge/website-Visit-blue)]([https://github.com/PhilippAubert/Number_Guessing_Game)
