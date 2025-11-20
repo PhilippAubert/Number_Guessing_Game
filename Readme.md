@@ -9,5 +9,6 @@ Project URL: https://github.com/PhilippAubert/Number_Guessing_Game
 ## About
 Users can set the number of attempts to guess a number between 1 and 100. 
 
+
 ## Usage
 Once the level has been set by the user, guessed numbers can be typed to command line. 
