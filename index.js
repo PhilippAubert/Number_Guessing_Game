@@ -2,7 +2,9 @@ import { EventEmitter } from "node:events";
 
 class GameEmitter extends EventEmitter {
     numberToGuess = 0;
+
     attempts = 0;
+
     level = "";
 
     levelTable = {
@@ -11,22 +13,23 @@ class GameEmitter extends EventEmitter {
         3: "Hard"
     };
 
-
     attemptTable = {
         1: 10,
         2: 5,
         3: 3
     };
-    
+
+    tries = 0;
 
     setNumberToGuess() {
         this.numberToGuess = Math.floor(Math.random() * 100);
     };
 
     setLevelAndAttempts(value) {
-        if (this.attemptTable[value] !== undefined) {
-            this.attempts = this.attemptTable[value];
-            this.level = this.levelTable[value];
+        const v = Number(value);
+        if (this.attemptTable[v] !== undefined) {
+            this.attempts = this.attemptTable[v];
+            this.level = this.levelTable[v];
         }
     };
     
@@ -55,7 +58,7 @@ gameEmitter.on("menu", () => {
 gameEmitter.on("win", () => {
     process.stdout.write(` 
         Congrats!! \n
-        You've guessed the right number! \n 
+        You've guessed the right number in ${gameEmitter.tries} attempts! \n 
         ${gameEmitter.numberToGuess} is correct! \n
         Great game!! 
         \n`
@@ -74,14 +77,19 @@ gameEmitter.on("lose", () => {
     process.exit();
 });
 
-gameEmitter.once("quit", () => {
-    process.stdout.write("See you next time");
+gameEmitter.on("quit", () => {
+    process.stdout.write("Alright, see you next time \n");
     process.exit();
 });
 
 gameEmitter.on("game", () => {
-    process.stdout.write(`Alright, you're playing at ${gameEmitter.level} \n`);
-    process.stdout.write(`You have ${gameEmitter.attempts} attempts for your guess \n`);
+    process.stdout.write(`Alright, you're playing at ${gameEmitter.level} \n
+    You have ${gameEmitter.attempts} attempts for your guess \n
+    Now enter your guess! \n`);
+});
+
+gameEmitter.on("error", () => {
+    process.stdout.write("Please enter a valid input \n");
 });
 
 const startGame = () => {
@@ -91,33 +99,35 @@ const startGame = () => {
     process.stdin.on("data", (data) => {
         const input = data.trim();
         if (input.toLowerCase() === "q") {
-            gameEmitter.emit("quit");
-        } else if (Number.isNaN(data)) {
-            process.stdout.write("please enter a valid input");
-        } else {
+            return;
+        } 
+        if  (gameEmitter.level === "") {
+            if (!/^[1-3]$/.test(input)) {
+                gameEmitter.emit("error");
+                return;
+            }
             gameEmitter.setLevelAndAttempts(input);
             gameEmitter.setNumberToGuess();
             gameEmitter.emit("game");
+            return;
         } 
 
-        if (gameEmitter.getNumberToGuess() !== 0) {
-            const guess = Number(input);
-            if (Number.isNaN(guess)) {
-                process.stdout.write("Enter a number between 1 and 3 or press 'q'");
-            } else { 
-                if (gameEmitter.attempts === 0) {
-                    gameEmitter.emit("lose");
-                }
-                if (guess === gameEmitter.numberToGuess) {
-                    gameEmitter.emit("win");
-                } else if (guess < gameEmitter.numberToGuess) {
-                    process.stdout.write(`the expected number is higher than ${guess} \n`);
-                    gameEmitter.attempts--;
-                } else if (guess > gameEmitter.numberToGuess) {
-                    process.stdout.write(`the expected number is lower than ${guess} \n`);
-                    gameEmitter.attempts--;
-     
-                }
+        const guess = Number(input);
+        if (gameEmitter.attempts === 1) {
+            gameEmitter.emit("lose");
+        }
+        if (Number.isNaN(guess)) {
+            process.stdout.write("Enter a number between 1 and 100");
+            return;
+        } else {
+            gameEmitter.attempts--;
+            gameEmitter.tries++;
+            if (guess === gameEmitter.numberToGuess) {
+                gameEmitter.emit("win");
+            } else if (guess < gameEmitter.numberToGuess) {
+                process.stdout.write(`the expected number is higher than ${guess} \n`);
+            } else if (guess > gameEmitter.numberToGuess) {
+                process.stdout.write(`the expected number is lower than ${guess} \n`);
             }
         }
     });
