@@ -1,10 +1,11 @@
 {
   "name": "number_guessing_game",
   "version": "1.0.0",
-  "description": "a simple cli tool ",
+  "description": "a simple cli game ",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/PhilippAubert/Number_Guessing_Game/issues"
   },
-  "homepage": "https://github.com/PhilippAubert/Number_Guessing_Game#readme"
+  "homepage": "https://github.com/PhilippAubert/Number_Guessing_Game#readme",
+  "type": "module",
+  "dependencies": {
+    "eslint": "^9.39.1"
+  }
 }
