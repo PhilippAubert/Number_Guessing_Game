@@ -1,6 +1,4 @@
-# A CLI-based number guessing game
+# A simple CLI-Game
 
-### Users can guess a number given by the server 
-
-### Depending on difficulty, the user has less attempts 
-
+## User can guess a number
+## The game closes after users attempts have expired or he guessed the right number
